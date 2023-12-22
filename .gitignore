@@ -1,6 +1,9 @@
+*.keras
+
 build
 _build
 
+dataset
 output
 
 .DS_store

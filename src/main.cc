@@ -6,7 +6,7 @@
 #include "triPeriodMiniSurface.h"
 #include "vertex.h"
 
-int main()
+void generate_test()
 {
     std::vector<double> alpha_list = { /* 3.5, 2.5,  */ 2 /* , 1 */ };
     std::vector<double> beta_list = { /* 3.5, 2.5,  */ 2 /* , 1 */ };
@@ -27,10 +27,29 @@ int main()
             }
         }
     }
+
     auto end = std::chrono::steady_clock::now();
     std::cout << "Elapsed time in seconds : "
               << std::chrono::duration_cast<std::chrono::seconds>(end - start).count()
               << " s" << std::endl;
+}
+
+int main(int argc, char** argv)
+{
+    // generate_test();
+    // if (argc /= 6)
+    // {
+    //     std::cerr << "Usage: " << argv[0] << " {alpha} {beta} {gamma} {c} {delta}" << std::endl;
+    // }
+
+    double alpha = atof(argv[1]);
+    double beta = atof(argv[2]);
+    double gamma = atof(argv[3]);
+    double c = atof(argv[4]);
+    double delta = atof(argv[5]);
+
+    TPMS gyroid(alpha, beta, gamma, c, delta);
+    gyroid.generate();
 
     return 0;
 }

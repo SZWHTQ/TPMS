@@ -38,17 +38,50 @@ void MPMfile::write()
     content << std::endl;
     content << "material" << std::endl;
     //  Gyroid TPMS
-    content << 1 << " elas "
-            << 1.2e-3 << " " // density
-            << 29 << " " // Elastic Modulus
-            << 0.39 // Poisson's Ratio
+    //     content << 1 << " elas "
+    //             << 1.2e-3 << " " // density
+    //             << 29 << " " // Elastic Modulus
+    //             << 0.39 // Poisson's Ratio
+    //             << std::endl;
+    content << 1 << " jcst "
+            << 2.8e-3 << " " // Density
+            << 6.89e4 << " " // Young's Modulus
+            << 0.33 << " " // Poisson's Ratio
+            << 295 << " " // A, Yield Stress
+            << 635 << " " // B, Strength Coefficient
+            << 0.9 << " " // n, Hardening Exponent
+            << 0.0075 << " " // C, Strain Rate Strength Coefficient
+            << 1.429 << " " // m, Temperature Exponent
+            << 293 << " " // Room Temperature
+            << 863 << " " // Melting Temperature
+            << 8.8e2 << " " // Specific Heat Capacity
+            << 1e-6 << " " // Reference Strain Rate
+            << 0.116 << " " // D1
+            << 0.211 << " " // D2
+            << -2.172 << " " // D3
+            << 0.012 << " " // D4
+            << -0.01256 << " " // D5
+            << 1 << " " // Failure strain factor
             << std::endl;
     // block
     content << 2 << " elas "
-            << 7.85 /*e-3*/ << " " // density
+            << 7.85e-3 << " " // density
             << 2e3 << " " // Elastic Modulus
             << 0.3 // Poisson's Ratio
             << std::endl;
+    // EoS
+    //  Mie-Gruneisen EoS for TPMS
+    content << "seos "
+            << 1 << " "
+            << 4 << " "
+            << 4909 << " " // C
+            << 2.03 << " " // S1
+            << 0 << " " // S2
+            << 0 << " " // S3
+            << 1.97 << " " // gamma0
+            << 0 << " " // a
+            << 0 << " " // E0
+            << 0 << std::endl; // V0
 
     // PostProcess Parameter
     content << std::endl;
@@ -92,7 +125,7 @@ void MPMfile::write()
     content << "Particle "
             << "block " << 2 << std::endl;
     content << 2 << " "
-            << 7.85 /* e-3 */ * (dx * dx * dx) << " "
+            << 7.85e-3 * (dx * dx * dx) << " "
             << dx << " "
             << -1 << " " << 100 << " " << -1 << " "
             << 102 / dx << " " << 6 / dx << " " << 102 / dx
@@ -102,7 +135,7 @@ void MPMfile::write()
     content << "Particle "
             << "block " << 3 << std::endl;
     content << 2 << " "
-            << 7.85 /* e-3 */ * (dx * dx * dx) << " "
+            << 7.85e-3 * (dx * dx * dx) << " "
             << dx << " "
             << -1 << " " << -6 << " " << -1 << " "
             << 102 / dx << " " << 6 / dx << " " << 102 / dx

@@ -1,9 +1,10 @@
+#include <iostream>
 #include <math.h>
 #include <string>
 
 #include "triPeriodMiniSurface.h"
-#include "writeVtk.h"
 #include "writeMPM.h"
+#include "writeVtk.h"
 
 TPMS::TPMS(double _alpha, double _beta, double _gamma, double _c, double _delta)
     : alpha(_alpha)
@@ -42,8 +43,15 @@ void TPMS::generate()
         }
     }
     volume_fraction = (double)V.size() / (Nx * Ny * Nz);
-    std::string filename = "tpms" + std::to_string(alpha) + "_" + std::to_string(beta) + "_" + std::to_string(gamma) + "_" + std::to_string(c) + "_" + std::to_string(delta) + ".vtk";
-    vtk->initialize(filename);
+    std::ofstream parameter("parameter.txt");
+    parameter << alpha << " "
+        << beta << " "
+        << gamma << " "
+        << c << " "
+        << delta << "\n"
+        << volume_fraction << std::endl;
+    // std::string filename = "tpms" + std::to_string(alpha) + "_" + std::to_string(beta) + "_" + std::to_string(gamma) + "_" + std::to_string(c) + "_" + std::to_string(delta) + ".vtk";
+    vtk->initialize("gyroid.vtk");
     vtk->write();
     mpm->initialize("gyroid.mpm");
     mpm->write();
