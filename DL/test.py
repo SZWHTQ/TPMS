@@ -75,7 +75,7 @@ def radar_plot(data):
 
 
 # 参数设置
-samples = 1000
+samples = 100
 params_num = 5
 points_num = 201
 
