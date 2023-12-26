@@ -1,5 +1,6 @@
 #include "writeVtk.h"
 #include "triPeriodMiniSurface.h"
+#include <iostream>
 
 void vtkUnstructuredGrid::initialize(std::string _filename = "demo.vtk")
 {
@@ -14,6 +15,7 @@ void vtkUnstructuredGrid::initialize(std::string _filename = "demo.vtk")
 void vtkUnstructuredGrid::write()
 {
     content << "POINTS " << tpms->V.size() << " double\n";
+    int count = 0;
     for (auto v : tpms->V) {
         content << v.x << " " << v.y << " " << v.z << "\n";
     }

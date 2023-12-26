@@ -15,10 +15,10 @@ private:
     double c;
     double delta;
     double volume_fraction;
-    const int factor = 100;
+    const size_t factor = 100;
 
 public:
-    size_t Nx = 50, Ny = 50, Nz = 50;
+    const size_t Nx = 50, Ny = 50, Nz = 50;
     std::vector<Vertex> V;
     friend class vtkUnstructuredGrid;
     vtkUnstructuredGrid* vtk;

@@ -29,6 +29,7 @@ bool TPMS::contain(Vertex v)
 void TPMS::generate()
 {
     double dx = 1.0 * factor / Nx, dy = 1.0 * factor / Ny, dz = 1.0 * factor / Nz;
+    V.clear();
     for (size_t i = 0; i < Nx; ++i) {
         double x = i * dx;
         for (size_t j = 0; j < Ny; ++j) {
@@ -45,11 +46,11 @@ void TPMS::generate()
     volume_fraction = (double)V.size() / (Nx * Ny * Nz);
     std::ofstream parameter("parameter.txt");
     parameter << alpha << " "
-        << beta << " "
-        << gamma << " "
-        << c << " "
-        << delta << "\n"
-        << volume_fraction << std::endl;
+              << beta << " "
+              << gamma << " "
+              << c << " "
+              << delta << "\n"
+              << volume_fraction << std::endl;
     // std::string filename = "tpms" + std::to_string(alpha) + "_" + std::to_string(beta) + "_" + std::to_string(gamma) + "_" + std::to_string(c) + "_" + std::to_string(delta) + ".vtk";
     vtk->initialize("gyroid.vtk");
     vtk->write();

@@ -1,10 +1,11 @@
 *.keras
+data.npz
 
 build
 _build
 
 dataset
 output
-data.npz
+test
 
 .DS_store

@@ -10,7 +10,7 @@ void MPMfile::initialize(std::string _filename = "demo.mpm")
     content << "! Unit: mm g N ms MPa" << std::endl;
     content << "nbco " << 3 << std::endl;
     content << "nbbo " << 3 << std::endl;
-    content << "nbmp " << 2 * (102 / dx * 102 / dx * 6 / dx) + tpms->V.size() << std::endl;
+    content << "nbmp " << 2 * ((int)(102 / dx + 1) * (int)(102 / dx + 1) * (int)(6 / dx + 1)) + tpms->V.size() << std::endl;
     content << "nmat " << 2 << std::endl;
 };
 
@@ -128,7 +128,7 @@ void MPMfile::write()
             << 7.85e-3 * (dx * dx * dx) << " "
             << dx << " "
             << -1 << " " << 100 << " " << -1 << " "
-            << 102 / dx << " " << 6 / dx << " " << 102 / dx
+            << (int)(102 / dx + 1) << " " << (int)(6 / dx + 1) << " " << (int)(102 / dx + 1)
             << std::endl;
     // Down
     content << std::endl;
@@ -138,7 +138,7 @@ void MPMfile::write()
             << 7.85e-3 * (dx * dx * dx) << " "
             << dx << " "
             << -1 << " " << -6 << " " << -1 << " "
-            << 102 / dx << " " << 6 / dx << " " << 102 / dx
+            << (int)(102 / dx + 1) << " " << (int)(6 / dx + 1) << " " << (int)(102 / dx + 1)
             << std::endl;
 
     content << std::endl;
